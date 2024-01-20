@@ -193,11 +193,9 @@ article {
 }
 
 #hint {
-    transition: .3s ease-in-out;
+    background-color: yellowgreen;
 }
-#hint:focus{
-    background-color: red;
-}
+
 
 #del {
     background-color: rgb(246, 54, 54);

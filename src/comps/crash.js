@@ -29,7 +29,7 @@ export default function Crash() {
     let [tries , setTries] = useState(5)
     let [level , setLevel] = useState(0)
     let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
-    let [hints , setHints] = useState(10)
+    let [hints , setHints] = useState(2)
 
 //---------------------------------------------------------------
 
@@ -142,7 +142,7 @@ export default function Crash() {
                         </fieldset>
                         <div className='ops_btns'>
                             <input id='check' disabled={check} type='button' value={"CHECK"} onClick={handleInteractions} />
-                            <input id='hint' key={hints} type='button' value={`${hints} HINTS`} onClick={()=>handleHint(level)} />
+                            <input id='hint' type='button' value={`${hints} HINTS`} onClick={()=>handleHint(level)} />
                             <input id='del' type='button' value={"DEL"} onClick={()=>{setAnswer("") ; unfocussed_btns()}} />
                             <input id='restart' type='button' value={"RESTART"} onClick={()=>{window.location.reload() ; alert("Do you want to restart to level 1 ?")}} />
                         </div>
