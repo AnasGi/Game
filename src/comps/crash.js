@@ -7,6 +7,7 @@ import img4 from '../pics/lvl4.webp'
 import img5 from '../pics/lvl5.jpg'
 import img6 from '../pics/lvl6.jpg'
 import img7 from '../pics/lvl7.jpg'
+import Tutorial from './tuto'
 
 
 const words = [
@@ -30,6 +31,8 @@ export default function Crash() {
     let [level , setLevel] = useState(0)
     let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
     let [hints , setHints] = useState(7)
+    let [tuto , setTuto] = useState(false)
+    
 
 //---------------------------------------------------------------
 
@@ -120,10 +123,14 @@ export default function Crash() {
         document.getElementById('span_try').classList.add('drop_try')
     }
 
+
 //---------------------------------------------------------------
     
     return (
         <div className='container' key={key}>
+            {key === 0 && <input id='game_tuto' type='button' value={"HOW TO PLAY"} onClick={()=>setTuto(true)} />}
+            {(tuto && key === 0) && <Tutorial play={()=>setKey(key+=1)}/>}
+            {/* key === 0 to show the tutorial once */}
             <form>
                 <main>
                     <p>{`{ `}Category : <span style={{textTransform : 'uppercase'}}>{words[level].category}</span>{` }`}</p>

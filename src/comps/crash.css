@@ -51,6 +51,21 @@ body , html , #root{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.tuto {
+    backdrop-filter: blur(10px);
+}
+
+#game_tuto {
+    background-color: lightblue;
+    margin-top: 5px;
+}
+
+.tuto p {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0px 10px;
+}
+
 header {  
     border: 3px solid white;
     height: 300px;
@@ -177,7 +192,7 @@ hr {
     color: white;
 }
 
-form input {
+form input , #game_tuto {
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 17px;
@@ -231,7 +246,7 @@ ol {
     text-align: start;
 }
 
-.prompt {
+.prompt , .tuto_cont {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,9 +255,10 @@ ol {
     width: 100%;
     height: 100vh;
     position: absolute;
+    z-index: 10;
 }
 
-.prompt>div {
+.prompt>div , .tuto {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -264,7 +280,7 @@ ol {
     padding: 0px 20px;
 }
 
-.prompt button {
+.prompt button , .tuto button {
     background-color: lightgreen;
     padding: 10px;
     border-radius: 5px;
