@@ -7,6 +7,8 @@ import img4 from '../pics/lvl4.webp'
 import img5 from '../pics/lvl5.jpg'
 import img6 from '../pics/lvl6.jpg'
 import img7 from '../pics/lvl7.jpg'
+
+
 const words = [
     {"category" : "body parts" , "letters" : ["ARM" , "LEG"] , "image" : img1}, //body parts
     {"category": "animals" , "letters" : ["CAT" , 'DOG' , "FOX"] , "image" : img2}, //animals
@@ -14,32 +16,39 @@ const words = [
     {"category": "kitchen" , "letters" : ["KNIF" , "FIRE" , "WATER" , "OVEN" , "SALT"] , "image" : img4}, //kitchen
     {"category": "gaming" , "letters" : ["GAME" , "LAG" , 'PLAY' , "GRAPHICS" , "CONSOLE"] , "image" : img5},//gaming
     {"category": "gym" , "letters" : ["DUMBLE" , "BAR" , "REPS" , 'SQUAT' , "DISKS"] , "image" : img6},//gym
-    {"category": "pc hardware" , "letters" : ["RAM" , "SSD" , "CPU" , 'PSU' , "GPU" , "CASE" , "CABLE" , "FAN"] , "image" : img7},//pc hardware
+    {"category": "pc parts" , "letters" : ["RAM" , "SSD" , "CPU" , 'PSU' , "GPU" , "CASE" , "CABLE" , "FAN"] , "image" : img7},//pc hardware
 ] 
 
 
 export default function Crash() {
-
+    //Our states
     const [answer , setAnswer] = useState("")
-    const [warn , setWarn] = useState('')
+    const [warn , setWarn] = useState()
     const [check , setCheck] = useState(false)
     let [ans , setAns] = useState([])
     let [tries , setTries] = useState(5)
     let [level , setLevel] = useState(0)
     let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
+    let [hints , setHints] = useState(10)
 
-    let word_tab = []
-    let ans_tab = []
+//---------------------------------------------------------------
+
+    let word_tab = [] // containing carrarters of each level
+    let ans_tab = [] // containing carrarters of an answer to remove them from page by the help of the splice loop
     //putting these arrays inside th component allow us to empty them each render
 
-    ans.map((at)=>ans_tab.push(...at)) // i push only the elemnts of at array into the ans_tab ...at not [...at]
+//---------------------------------------------------------------
 
+    ans.map((at)=>ans_tab.push(...at)) // i push only the elemnts of [at] into the [ans_tab] (...at not [...at])
+
+    //caracteres loop
     for(let i=0 ; i < words[level].letters.length ; i++){
         for(let j=0 ; j < words[level].letters[i].length ; j++){
             word_tab.push(words[level].letters[i].charAt(j))
         }
     }//loop to push all the caracteres of a level in word_tab to display them
     
+    //splice loop
     for (let index = 0; index < ans_tab.length; index++) {
         for (let k = 0; k < word_tab.length; k++) {
             if(ans_tab[index] === word_tab[k]){
@@ -48,7 +57,10 @@ export default function Crash() {
             }
         }
     } //loop to remove buttons of the letters of a correct answer
+
     word_tab.sort()
+
+//---------------------------------------------------------------Our functions
 
     function handleInteractions(){
 
@@ -56,25 +68,25 @@ export default function Crash() {
         let dup = ans.find(an=>an === answer)
 
         if(answer === ""){
-            setWarn('type an answer')
+            setWarn(()=><p id='warning'><span id='warnin_pointer'></span> type an answer</p>) //passing a function containing html elements in setWarn
         }
         else if(dup !== undefined){
-            setWarn('this word is already there')
+            setWarn(()=><p id='warning'><span id='warnin_pointer'></span> this word is already there</p>)
         }
         else{
             if(correct){
                 setAns([...ans , correct])
                 setTries(tries<5 ? tries+=1 : tries)
-                tries_status('lightgreen' , 'black')
             }
             else{
                 setTries(tries>0 ? tries-=1 : tries)
-                unfocussed_btns()
-                tries_status('red' , 'white')
+                tries_status()
             }
             setWarn('')
         }
         setAnswer('') //to make room for the other answer
+
+        unfocussed_btns()
 
         if(ans.length === words[level].letters.length){
             setCheck(true)
@@ -82,21 +94,33 @@ export default function Crash() {
         } // in case we pass a level we disable th check button and we clear the warnings because disabling works until the second click
     }
 
+    function handleHint(level){
+        setHints(hints-=1)
+        let word_index = (words[level].letters.length-1) - ans.length //word_index subtract words[level].letters length with ans to get each time a number thta start with the index of the last elemnt in words[level].letters
+        setAns([...ans , ...[words[level].letters[word_index]]])//pushing the random hinted word into ans table
+        if(hints === 0){
+            document.getElementById('hint').disabled = true
+        }
+    }
+
     function focussed_btns(id){
         document.getElementById(id).style.backgroundColor = "rgb(90, 26, 149)"
+        document.getElementById(id).disabled = true //to disable a letter if we use it
     }
 
     function unfocussed_btns(){
         let btns = document.querySelectorAll('.btns>input')
         for (let index = 0; index < btns.length; index++) {
             btns[index].style.backgroundColor = "blueviolet"
+            btns[index].disabled = false
         }
     }
 
-    function tries_status(bgcolor , col){
-        document.getElementById('tries').style.backgroundColor = bgcolor
-        document.getElementById('tries').style.color = col
+    function tries_status(){
+        document.getElementById('span_try').classList.add('drop_try')
     }
+
+//---------------------------------------------------------------
     
     return (
         <div className='container' key={key}>
@@ -106,40 +130,45 @@ export default function Crash() {
                     <header style={{backgroundImage : `url(${words[level].image})`}}><div><p>Level <span key={level}>{level+1}</span></p></div></header>
                     <aside className='infos'>
                         <div id='objective'><span id='pointer'></span><p id='nbre_words'>you have to get {words[level].letters.length - ans.length} word(s)</p></div>
-                        <hr></hr>
-                        <p id='tries'>you have <span id='span_try' key={tries}>{tries}</span> tries</p>
                     </aside>
                 </main>
                 <article>
+                    <p id='tries'>you have <span id='span_try' key={tries} >{tries}</span> tries</p>
+                    <div id='warn_cont'>{warn}</div>
                     <section className='inputs'>
                         <fieldset id='answer'>
                             <legend>ANSWER</legend>
                             <input id='answer_inp' type='text' value={answer} disabled/>
                         </fieldset>
-                        <input id='check' disabled={check} type='button' value={"CHECK"} onClick={handleInteractions} />
-                        <input id='del' type='button' value={"DEL"} onClick={()=>{setAnswer("") ; unfocussed_btns()}} />
-                        <input id='restart' type='button' value={"RESTART"} onClick={()=>window.location.reload()} />
+                        <div className='ops_btns'>
+                            <input id='check' disabled={check} type='button' value={"CHECK"} onClick={handleInteractions} />
+                            <input id='hint' key={hints} type='button' value={`${hints} HINTS`} onClick={()=>handleHint(level)} />
+                            <input id='del' type='button' value={"DEL"} onClick={()=>{setAnswer("") ; unfocussed_btns()}} />
+                            <input id='restart' type='button' value={"RESTART"} onClick={()=>{window.location.reload() ; alert("Do you want to restart to level 1 ?")}} />
+                        </div>
                     </section>
-                    <div className='btns' key={ans /*to rmove the bg color when clicked on the second answer*/}>
+                    <div className='btns'>
                         {
                             word_tab.map((wrd , idx)=>
                             <input 
-                            type='button'
-                            key={idx} 
-                            id={idx}
-                            value={wrd} 
-                            readOnly 
-                            onClick={(e)=>{setAnswer(answer+e.target.value) ; focussed_btns(idx.toString()) }}
+                                type='button'
+                                key={idx} 
+                                id={idx}
+                                value={wrd} 
+                                readOnly 
+                                onClick={(e)=>{setAnswer(answer+e.target.value) ; focussed_btns(idx.toString()) }}
                             />)
                         }
                     </div>
+                    <footer>
+                        <p style={{opacity : .2}}>MADE BY ANAS BOUSSALEM</p>
+                    </footer>
                     <hr></hr>
                     <ol>
                     {
                         ans.map((a , i)=><li key={i}>{a}</li>)
                     }
                     </ol>
-                    <p id='warning'>{warn}</p>
                 </article>
             </form>
 
@@ -168,14 +197,10 @@ export default function Crash() {
                     result={level < words.length-1 ? "PASS" : "COMPLETED EVERY"}  
                     lvl={level < words.length-1 ? level+1 : ""}
                 />
-                //onPassLvl didn't accept words[setLevel(level+1)] with setAns([]) in its function  so i add onClick event to handle it
-                //level < words.length-1 handle the completion of all the levels
-            }
-            <footer style={{position : "absolute" , bottom : 0}}>
-                <p style={{opacity : .2}}>MADE BY ANAS BOUSSALEM</p>
-            </footer>
+                //onPassLvl didn't accept words[setLevel(level+1)] with setAns([]) in her function  so i add onClick event to handle it
+                //level < words.length-1 handle the completion of all the levels if level = words.length-1 that means the complition of all levels
+            } 
         </div> 
-
     )
 }
 

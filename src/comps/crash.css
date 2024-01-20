@@ -18,6 +18,22 @@
     }
 }
 
+@keyframes dropTry {
+    0%{
+        color: white;
+    }
+    50%{
+        color: red;
+    }
+    100%{
+        color: rgb(216, 208, 208);
+    }
+}
+
+.drop_try{
+    animation: dropTry .3s linear;
+}
+
 body , html , #root{
     background-color: rgb(32, 32, 40);
     height: 100%;
@@ -37,7 +53,6 @@ body , html , #root{
 
 header {  
     border: 3px solid white;
-    object-fit: cover;
     height: 300px;
     display: flex;
     align-items: center;
@@ -58,9 +73,7 @@ header p {
     font-weight: bolder;
     margin: 0;
 }
-#tries {
-    padding: 5px;
-}
+
 form {
     display: flex;
     justify-content: space-around;
@@ -90,17 +103,47 @@ main>p {
     gap: 10px;
 }
 
-#pointer {
+#warn_cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#warning {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+#pointer ,#warnin_pointer {
     display: inline-block;
     height: 20px;
     width: 20px;
     border-radius: 50%;
     background-color: yellow;
 }
+#warnin_pointer{
+    background-color: red;
+}
+
 
 #span_try , header span {
     opacity: 1;
     animation: fade .5s linear;
+}
+#span_try {
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0px 5px;
+}
+#tries {
+    padding: 5px;
+    text-transform: capitalize;
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 .inputs {
@@ -148,12 +191,28 @@ article {
 #check {
     background-color: rgb(94, 245, 94);
 }
+
+#hint {
+    transition: .3s ease-in-out;
+}
+#hint:focus{
+    background-color: red;
+}
+
 #del {
     background-color: rgb(246, 54, 54);
 }
+
 #restart {
     background-color: gainsboro;
 }
+
+.ops_btns {
+    display: grid;
+    grid-template-columns: repeat(2 , 150px);
+    gap: 10px;
+}
+
 .btns{
     width: 100%;
     margin: 40px 0px;
@@ -172,12 +231,6 @@ ol {
     font-size: 20px;
     font-weight: bolder;
     text-align: start;
-}
-
-#warning {
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bold;
 }
 
 .prompt {
