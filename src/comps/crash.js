@@ -29,7 +29,7 @@ export default function Crash() {
     let [tries , setTries] = useState(5)
     let [level , setLevel] = useState(0)
     let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
-    let [hints , setHints] = useState(2)
+    let [hints , setHints] = useState(7)
 
 //---------------------------------------------------------------
 
