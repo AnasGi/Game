@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Game_Crash/static/css/main.dc0d9f0a.css",
-    "main.js": "/Game_Crash/static/js/main.6e82ade0.js",
+    "main.css": "/Game_Crash/static/css/main.9922ca90.css",
+    "main.js": "/Game_Crash/static/js/main.7abd0975.js",
     "static/js/787.f055211e.chunk.js": "/Game_Crash/static/js/787.f055211e.chunk.js",
     "static/media/lvl5.jpg": "/Game_Crash/static/media/lvl5.37fec3a81c2a16b126d5.jpg",
     "static/media/lvl2.jpg": "/Game_Crash/static/media/lvl2.4d169bd66249a45ca6ca.jpg",
     "static/media/lvl6.jpg": "/Game_Crash/static/media/lvl6.f45c77c5386b71001d7b.jpg",
+    "static/media/lvl7.jpg": "/Game_Crash/static/media/lvl7.ed2f353f0c758e9a68cc.jpg",
     "static/media/lvl3.webp": "/Game_Crash/static/media/lvl3.76526aa775a4e97d6a77.webp",
-    "static/media/lvl7.jpg": "/Game_Crash/static/media/lvl7.e1c11998d553589cee92.jpg",
     "static/media/lvl4.webp": "/Game_Crash/static/media/lvl4.bb8a0af94eaf0809d881.webp",
     "static/media/lvl1.webp": "/Game_Crash/static/media/lvl1.ca20bbfbf521d60fe3e4.webp",
     "index.html": "/Game_Crash/index.html",
-    "main.dc0d9f0a.css.map": "/Game_Crash/static/css/main.dc0d9f0a.css.map",
-    "main.6e82ade0.js.map": "/Game_Crash/static/js/main.6e82ade0.js.map",
+    "main.9922ca90.css.map": "/Game_Crash/static/css/main.9922ca90.css.map",
+    "main.7abd0975.js.map": "/Game_Crash/static/js/main.7abd0975.js.map",
     "787.f055211e.chunk.js.map": "/Game_Crash/static/js/787.f055211e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc0d9f0a.css",
-    "static/js/main.6e82ade0.js"
+    "static/css/main.9922ca90.css",
+    "static/js/main.7abd0975.js"
   ]
 }
