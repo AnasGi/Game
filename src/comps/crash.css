@@ -289,7 +289,7 @@ ol {
 }
 
 @media screen and (max-width : 770px) {
-    .prompt>div {
+    .prompt>div , .tuto {
         height: 200px;
         width: 300px;
     }
