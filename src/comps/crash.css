@@ -1,0 +1,232 @@
+@keyframes show {
+    from{
+        transform: scale(1) ;
+    }
+    to{
+        transform: scale(1.2);
+    }
+}
+@keyframes fade {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: .5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+body , html , #root{
+    background-color: rgb(32, 32, 40);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.container , .App{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {  
+    border: 3px solid white;
+    object-fit: cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: brightness(50%);
+}
+
+header p {
+    font-size: 70px;
+    font-weight: bolder;
+    margin: 0;
+}
+#tries {
+    padding: 5px;
+}
+form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5p;
+}
+
+main>p {
+    text-transform: capitalize;
+    font-size: 30px;
+    font-weight: bolder;
+    background-color: blueviolet;
+    padding: 10px;
+}
+.infos {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#objective {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#pointer {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+}
+
+#span_try , header span {
+    opacity: 1;
+    animation: fade .5s linear;
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#answer {
+    width: 90%;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 20px 0px;
+    border: 2px solid white;
+}
+hr {
+    width: 80%;
+}
+#answer>legend {
+    padding: 5px 40px;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 149);
+    font-weight: bold;
+}
+#answer>input {
+    width: 80%;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+form input {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+article {
+    width: 40%;
+}
+
+#check {
+    background-color: rgb(94, 245, 94);
+}
+#del {
+    background-color: rgb(246, 54, 54);
+}
+#restart {
+    background-color: gainsboro;
+}
+.btns{
+    width: 100%;
+    margin: 40px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btns>input{
+    background-color: blueviolet;
+    width: 100px;
+}
+
+ol {
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: start;
+}
+
+#warning {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.633);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+.prompt>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    width: 400px;
+    border: 2px solid;
+    background: linear-gradient(to bottom right ,rgb(195, 188, 188) , white 80%);
+    color: black;
+    padding: 25px 0px;
+    border-radius: 10px;
+    animation: show .5s linear;
+    transform: scale(1.2);
+    position: absolute;
+    z-index: 10;
+    font-weight: bolder;
+}
+.prompt h1 {
+    padding: 0px 20px;
+}
+
+.prompt button {
+    background-color: lightgreen;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+@media screen and (max-width : 770px) {
+    .prompt>div {
+        height: 200px;
+        width: 300px;
+    }
+    article {
+        width: 90%;
+    }
+}
