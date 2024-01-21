@@ -18,26 +18,11 @@
     }
 }
 
-@keyframes dropTry {
-    0%{
-        color: white;
-    }
-    50%{
-        color: red;
-    }
-    100%{
-        color: rgb(216, 208, 208);
-    }
-}
-
-.drop_try{
-    animation: dropTry .3s linear;
-}
-
 body , html , #root{
     background-color: rgb(32, 32, 40);
     height: 100%;
     overflow-x: hidden;
+    user-select: none;
 }
 
 .container , .App{
@@ -56,8 +41,8 @@ body , html , #root{
 }
 
 #game_tuto {
-    background-color: lightblue;
-    margin-top: 5px;
+    text-decoration: overline;
+    cursor: pointer;
 }
 
 .tuto p {
@@ -155,10 +140,10 @@ main>p {
     padding: 0px 5px;
 }
 #tries {
-    padding: 5px;
     text-transform: capitalize;
     font-size: 30px;
     font-weight: bolder;
+    margin: 15px;
 }
 
 .inputs {
@@ -171,16 +156,15 @@ main>p {
     background-color: transparent;
     border-radius: 10px;
     margin: 20px 0px;
-    border: 2px solid white;
+    border: 4px solid white;
 }
+
 hr {
     width: 80%;
 }
+
 #answer>legend {
-    padding: 5px 40px;
-    border: 2px solid;
-    border-radius: 10px;
-    background-color: rgb(0, 0, 149);
+    padding: 0px 10px;
     font-weight: bold;
 }
 #answer>input {
@@ -192,7 +176,7 @@ hr {
     color: white;
 }
 
-form input , #game_tuto {
+form input {
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 17px;
@@ -228,22 +212,40 @@ article {
 
 .btns{
     width: 100%;
-    margin: 40px 0px;
+    margin: 30px 0px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .btns>input{
+    background-color: blue;
+    width: 70px;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+    color: white;
+    border: 1px solid white;
+}
+.btns>input:hover{
     background-color: blueviolet;
-    width: 100px;
+}
+
+#ans_cont {
+    display: flex;
+    justify-content: center;
 }
 
 ol {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bolder;
     text-align: start;
+}
+
+li {
+    color: lightgreen;
 }
 
 .prompt , .tuto_cont {
@@ -286,6 +288,7 @@ ol {
     border-radius: 5px;
     font-weight: bold;
     font-size: 20px;
+    cursor: pointer;
 }
 
 @media screen and (max-width : 770px) {

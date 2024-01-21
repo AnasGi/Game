@@ -7,17 +7,23 @@ import img4 from '../pics/lvl4.webp'
 import img5 from '../pics/lvl5.jpg'
 import img6 from '../pics/lvl6.jpg'
 import img7 from '../pics/lvl7.jpg'
+import img8 from '../pics/lvl8.webp'
+import img9 from '../pics/lvl9.jpg'
+import img10 from '../pics/lvl10.jpg'
 import Tutorial from './tuto'
 
 
 const words = [
     {"category" : "body parts" , "letters" : ["ARM" , "LEG"] , "image" : img1}, //body parts
     {"category": "animals" , "letters" : ["CAT" , 'DOG' , "FOX"] , "image" : img2}, //animals
-    {"category": "summer" , "letters" : ["HOT" , "SUN" , "SKY" , "HAT"] , "image" : img3}, //summer
-    {"category": "kitchen" , "letters" : ["KNIF" , "FIRE" , "WATER" , "OVEN" , "SALT"] , "image" : img4}, //kitchen
-    {"category": "gaming" , "letters" : ["GAME" , "LAG" , 'PLAY' , "GRAPHICS" , "CONSOLE"] , "image" : img5},//gaming
-    {"category": "gym" , "letters" : ["DUMBLE" , "BAR" , "REPS" , 'SQUAT' , "DISKS"] , "image" : img6},//gym
-    {"category": "pc parts" , "letters" : ["RAM" , "SSD" , "CPU" , 'PSU' , "GPU" , "CASE" , "CABLE" , "FAN"] , "image" : img7},//pc hardware
+    {"category": "summer" , "letters" : ["HOT" , "SUN" , "BEACH" , "HAT"] , "image" : img3}, //summer
+    {"category": "kitchen" , "letters" : ["KNIFE" , "DISH" , "PAN" , "OVEN" , "SALT"] , "image" : img4}, //kitchen
+    {"category": "gaming" , "letters" : ["GAME" , "WIN" , 'PLAY' , "FUN" , "SCORE"] , "image" : img5},//gaming
+    {"category": "gym" , "letters" : ["DUMBLE" , "CARDIO" , "TRAINER" , 'SQUAT' , "FITNESS"] , "image" : img6},//gym
+    {"category": "pc parts" , "letters" : ["RAM" , "SCREEN" , "CPU" , 'MOUSE' , "KEYBORD" , "PORT" , "CABLE" , "FAN"] , "image" : img7},//pc hardware
+    {"category": "nature" , "letters" : ["RIVER" , "FOREST" , "TREE" , 'GRASS' , "SKY" , "SEA" , "FLOWER" , "ROCK"] , "image" : img8},//nature
+    {"category": "art" , "letters" : ["ARTIST" , "PAINT" , "GALLERY" , 'BRASH' , "COLOR"] , "image" : img9},//art
+    {"category": "cars" , "letters" : ["ENGINE" , "TIRES" , "GEAR" , 'RIDE' , "DRIVER" , "FUEL" , "BRAKE"] , "image" : img10},//cars
 ] 
 
 
@@ -25,12 +31,11 @@ export default function Crash() {
     //Our states
     const [answer , setAnswer] = useState("")
     const [warn , setWarn] = useState()
-    const [check , setCheck] = useState(false)
     let [ans , setAns] = useState([])
     let [tries , setTries] = useState(5)
     let [level , setLevel] = useState(0)
     let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
-    let [hints , setHints] = useState(7)
+    let [hints , setHints] = useState(10)
     let [tuto , setTuto] = useState(false)
     
 
@@ -68,7 +73,7 @@ export default function Crash() {
     function handleInteractions(){
 
         let correct = words[level].letters.find(wd=>wd === answer) 
-        let dup = ans.find(an=>an === answer)
+        let dup = ans.find(an=>an === answer) //duplicated word
 
         if(answer === ""){
             setWarn(()=><p id='warning'><span id='warnin_pointer'></span> type an answer</p>) //passing a function containing html elements in setWarn
@@ -83,18 +88,11 @@ export default function Crash() {
             }
             else{
                 setTries(tries>0 ? tries-=1 : tries)
-                tries_status()
             }
             setWarn('')
         }
         setAnswer('') //to make room for the other answer
-
         unfocussed_btns()
-
-        if(ans.length === words[level].letters.length){
-            setCheck(true)
-            setWarn('')
-        } // in case we pass a level we disable th check button and we clear the warnings because disabling works until the second click
     }
 
     function handleHint(level){
@@ -108,19 +106,15 @@ export default function Crash() {
 
     function focussed_btns(id){
         document.getElementById(id).style.backgroundColor = "rgb(90, 26, 149)"
-        document.getElementById(id).disabled = true //to disable a letter if we use it
+        document.getElementById(id).disabled = true //to disable the clicked letter
     }
 
     function unfocussed_btns(){
         let btns = document.querySelectorAll('.btns>input')
         for (let index = 0; index < btns.length; index++) {
-            btns[index].style.backgroundColor = "blueviolet"
+            btns[index].style.backgroundColor = "blue"
             btns[index].disabled = false
         }
-    }
-
-    function tries_status(){
-        document.getElementById('span_try').classList.add('drop_try')
     }
 
 
@@ -128,8 +122,8 @@ export default function Crash() {
     
     return (
         <div className='container' key={key}>
-            {key === 0 && <input id='game_tuto' type='button' value={"HOW TO PLAY"} onClick={()=>setTuto(true)} />}
-            {(tuto && key === 0) && <Tutorial play={()=>setKey(key+=1)}/>}
+            {key === 0 && <p id='game_tuto' onClick={()=>setTuto(true)}>HOW TO PLAY ?</p>}
+            {(tuto && key === 0) && <Tutorial play={()=>setKey(key+=1)} nbrelvl={words.length}/>}
             {/* key === 0 to show the tutorial once */}
             <form>
                 <main>
@@ -148,7 +142,7 @@ export default function Crash() {
                             <input id='answer_inp' type='text' value={answer} disabled/>
                         </fieldset>
                         <div className='ops_btns'>
-                            <input id='check' disabled={check} type='button' value={"CHECK"} onClick={handleInteractions} />
+                            <input id='check' type='button' value={"CHECK"} onClick={handleInteractions} />
                             <input id='hint' type='button' value={`${hints} HINTS`} onClick={()=>handleHint(level)} />
                             <input id='del' type='button' value={"DEL"} onClick={()=>{setAnswer("") ; unfocussed_btns()}} />
                             <input id='restart' type='button' value={"RESTART"} onClick={()=>{window.location.reload() ; alert("Do you want to restart to level 1 ?")}} />
@@ -171,11 +165,13 @@ export default function Crash() {
                         <p style={{opacity : .2}}>MADE BY ANAS BOUSSALEM</p>
                     </footer>
                     <hr></hr>
-                    <ol>
-                    {
-                        ans.map((a , i)=><li key={i}>{a}</li>)
-                    }
-                    </ol>
+                    <div id='ans_cont'>
+                        <ol>
+                        {
+                            ans.map((a , i)=><li key={i}>{a}</li>)
+                        }
+                        </ol>
+                    </div>
                 </article>
             </form>
 
@@ -194,9 +190,11 @@ export default function Crash() {
                         if(level < words.length-1){
                             setLevel(level+1); 
                             setAns([])
+                            setAnswer('')
+                            setWarn('')
                         }
                         else{
-                            window.location.reload()
+                            window.location.reload() //if the user completed all the levels
                         }
                     }} 
                     onClick={()=>level < words.length-1 ? words[level].letters : words[words.length-1]} 
