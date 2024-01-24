@@ -97,8 +97,15 @@ export default function Crash() {
 
     function handleHint(level){
         setHints(hints-=1)
-        let word_index = (words[level].letters.length-1) - ans.length //word_index subtract words[level].letters length with ans to get each time a number thta start with the index of the last elemnt in words[level].letters
-        setAns([...ans , ...[words[level].letters[word_index]]])//pushing the random hinted word into ans table
+         
+        const conbineArrays = words[level].letters.concat(ans) //combining [ans] and words[level].letters to spot the duplicates
+        const hinted_word = conbineArrays.filter((element)=>conbineArrays.indexOf(element) === conbineArrays.lastIndexOf(element)) 
+        //conbineArrays.indexOf(element) represents the index of the first occurrence of the element 
+        //conbineArrays.lastindexOf(element) represents the index of the last occurrence of the element 
+        //if the first and last occurrences have the same index then its a unique element
+           
+        setAns([...ans , hinted_word[0]])//pushing the random hinted word into ans table
+
         if(hints === 0){
             document.getElementById('hint').disabled = true
         }
