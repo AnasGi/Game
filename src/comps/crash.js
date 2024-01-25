@@ -11,6 +11,7 @@ import img8 from '../pics/lvl8.webp'
 import img9 from '../pics/lvl9.jpg'
 import img10 from '../pics/lvl10.jpg'
 import Tutorial from './tuto'
+import { Link } from 'react-router-dom'
 
 
 const words = [
@@ -134,6 +135,10 @@ export default function Crash() {
             {/* key === 0 to show the tutorial once */}
             <form>
                 <main>
+                    <div className='Links' style={{marginTop : "30px"}}>
+                        <div  className='Link_cont'><Link to='/Game_Crash/FanLvl'>Fan made levels</Link></div>
+                        <div  className='Link_cont'><Link to='/Game_Crash/AddLvl'>Create your own level</Link></div>
+                    </div>
                     <p>{`{ `}Category : <span style={{textTransform : 'uppercase'}}>{words[level].category}</span>{` }`}</p>
                     <header style={{backgroundImage : `url(${words[level].image})`}}><div><p>Level <span key={level}>{level+1}</span></p></div></header>
                     <aside className='infos'>

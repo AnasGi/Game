@@ -1,0 +1,25 @@
+{
+  "words": [
+    {
+      "id": "0",
+      "category": "body parts",
+      "letters": [
+        "ARM",
+        "LEG"
+      ],
+      "image": "https://img.freepik.com/photos-gratuite/outils-sport_53876-138077.jpg",
+      "maker": "Anas"
+    },
+    {
+      "id": "864c",
+      "category": "electronics",
+      "letters": [
+        "TELEVISION",
+        "LAPTOP",
+        "PHONE"
+      ],
+      "image": "",
+      "maker": "BM"
+    }
+  ]
+}

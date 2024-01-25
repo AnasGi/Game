@@ -1,0 +1,68 @@
+.fan_cont {
+    width: 80%;
+    height: 90vh;
+}
+
+.fan_cont a {
+    text-decoration: none;
+}
+
+.fan_cont h1 {
+    font-size: 50px;
+    animation: flash 5s linear infinite;
+}
+
+
+.fan_lvl_cont {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 10%;
+    width: 100%;
+    background-color: blue;
+    padding: 10px 0px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.fan_lvl_cont:hover {
+    background-color: rgb(24, 167, 214);
+}
+
+.fan_lvl_info {
+    display: flex;
+    justify-content: space-around;
+    width:70%;
+}
+
+.fan_lvl_cont p {
+    border: 2px solid;
+    padding: 10px ;
+    border-radius: 10px;
+    background-color: white;
+    text-transform: capitalize;
+    color: black;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 90%;
+}
+/* 
+.fan_lvl_cont p:first-child , .fan_lvl_cont p:last-child {
+   width: 200px;
+} */
+
+.fan_lvl_img_cont {
+    height: 100px;
+    min-width: 20px;
+    max-width: 150px;
+
+}
+.fan_lvl_cont img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+    object-fit: cover;
+}

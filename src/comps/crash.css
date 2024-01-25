@@ -18,6 +18,24 @@
     }
 }
 
+@keyframes flash {
+    0%{
+        color: white;
+    }
+    25%{
+        color: lightgreen;
+    }
+    50%{
+        color: blueviolet;
+    }
+    75%{
+        color: lightcoral;
+    }
+    100%{
+        color: aqua;
+    }
+}
+
 body , html , #root{
     background-color: rgb(32, 32, 40);
     height: 100%;
@@ -291,6 +309,24 @@ li {
     cursor: pointer;
 }
 
+.Link_cont * {
+    text-decoration: none;
+    background-color: lightgreen;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    height: 100%;
+}
+
+.Links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
 @media screen and (max-width : 770px) {
     .prompt>div , .tuto {
         height: 200px;
@@ -299,4 +335,31 @@ li {
     article {
         width: 90%;
     }
+    .msg {
+        width:100%;
+        text-align: center;
+    }
+    .add_form {
+        width: 100%;
+    }
+    .Links {
+        justify-content: center;
+    }
+
+
+
+    .fan_cont h1 {
+        text-align: center;
+    }
+
+    .fan_lvl_info {
+        flex-direction: column;
+    }
+
+    .fan_lvl_img_cont {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    
 }
