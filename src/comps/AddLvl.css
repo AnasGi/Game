@@ -37,7 +37,7 @@
 }
 
 .add_form>div {
-    margin: 30px;
+    margin-bottom: 30px;
 }
 
 .add_form label {
@@ -47,27 +47,11 @@
     font-size: 22px;
     font-weight: 600;
     padding-bottom: 10px;
-}
-
-.add_form input {
-    display: inline-block;
-    width: 90%;
-}
-
-#set_nbre_inps {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    text-align: center;
 }
 
 #set_nbre_inps>div {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-#nbr_words{
-    width: 50px;
+    margin-top: 10px;
 }
 
 #res {

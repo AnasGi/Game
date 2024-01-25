@@ -90,26 +90,30 @@ export default function AddLvl() {
     <div className='addlvl' >
         <div className='msg'>
             <p>Create a new <span id='flash'>level</span></p>
+            <div className='Links'>
+                <div className='Link_cont'><Link to={"/Game_Crash/FanLvl"}>Go to Fan levels</Link></div>
+                <div className='Link_cont'><Link to={"/Game_Crash"}>Home</Link></div>
+            </div>
         </div>
         <form name='f1' className='add_form' onSubmit={(e)=>AddLevel(e)}>
             <p id='err'>{error}</p>
             <div>
-                <label>Theme : </label>
+                <label>Theme</label>
                 <input type='text' name='cat' onChange={(e)=>setCategory(e.target.value)}/>
             </div>
             
             <div>
-                <label>Image URL : </label>
+                <label>Image URL</label>
                 <input type='text' onChange={(e)=>setImage(e.target.value)}/>
             </div>
             
             <div>
-                <label>Creator name : </label>
+                <label>Creator name</label>
                 <input type='text' name='name' onChange={(e)=>setMaker(e.target.value)}/>
             </div>
 
             <div>
-                <label>Words : </label>
+                <label>Words</label>
                 <span id='set_nbre_inps'>
                     <input type='number' id='nbr_words' value={n} readOnly />
                     <div>
@@ -129,10 +133,7 @@ export default function AddLvl() {
 
             
         </form>
-        <div className='Links'>
-            <div className='Link_cont'><Link to={"/Game_Crash/FanLvl"}>Go to Fan levels</Link></div>
-            <div className='Link_cont'><Link to={"/Game_Crash"}>Home</Link></div>
-        </div>
+        
     </div>
   )
 }

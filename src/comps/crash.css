@@ -335,6 +335,8 @@ li {
     article {
         width: 90%;
     }
+
+
     .msg {
         width:100%;
         text-align: center;
@@ -345,14 +347,16 @@ li {
     .Links {
         justify-content: center;
     }
-
+    .addlvl>div, .addlvl>form{
+        width: 90%;
+    }
 
 
     .fan_cont h1 {
         text-align: center;
     }
 
-    .fan_lvl_info {
+    .fan_lvl_info , .addlvl {
         flex-direction: column;
     }
 
