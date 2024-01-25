@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Game_Crash/static/css/main.83dca666.css",
-    "main.js": "/Game_Crash/static/js/main.1bdd5933.js",
+    "main.css": "/Game_Crash/static/css/main.fedcd3e3.css",
+    "main.js": "/Game_Crash/static/js/main.6aa7badc.js",
     "static/js/787.f055211e.chunk.js": "/Game_Crash/static/js/787.f055211e.chunk.js",
     "static/media/lvl10.jpg": "/Game_Crash/static/media/lvl10.8b788666052ffc8a18ec.jpg",
     "static/media/lvl5.jpg": "/Game_Crash/static/media/lvl5.37fec3a81c2a16b126d5.jpg",
@@ -14,12 +14,12 @@
     "static/media/lvl4.webp": "/Game_Crash/static/media/lvl4.bb8a0af94eaf0809d881.webp",
     "static/media/lvl1.webp": "/Game_Crash/static/media/lvl1.ca20bbfbf521d60fe3e4.webp",
     "index.html": "/Game_Crash/index.html",
-    "main.83dca666.css.map": "/Game_Crash/static/css/main.83dca666.css.map",
-    "main.1bdd5933.js.map": "/Game_Crash/static/js/main.1bdd5933.js.map",
+    "main.fedcd3e3.css.map": "/Game_Crash/static/css/main.fedcd3e3.css.map",
+    "main.6aa7badc.js.map": "/Game_Crash/static/js/main.6aa7badc.js.map",
     "787.f055211e.chunk.js.map": "/Game_Crash/static/js/787.f055211e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.83dca666.css",
-    "static/js/main.1bdd5933.js"
+    "static/css/main.fedcd3e3.css",
+    "static/js/main.6aa7badc.js"
   ]
 }
