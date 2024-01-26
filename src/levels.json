@@ -2,10 +2,12 @@
   "words": [
     {
       "id": "0",
-      "category": "body parts",
+      "category": "sport",
       "letters": [
-        "ARM",
-        "LEG"
+        "TENIS",
+        "FOOTBALL",
+        "COACH",
+        "TEAM"
       ],
       "image": "https://img.freepik.com/photos-gratuite/outils-sport_53876-138077.jpg",
       "maker": "Anas"
@@ -20,6 +22,16 @@
       ],
       "image": "",
       "maker": "BM"
+    },
+    {
+      "id": "74da",
+      "category": "food",
+      "letters": [
+        "ONION",
+        "APPLE"
+      ],
+      "image": "",
+      "maker": "ahmed"
     }
   ]
 }

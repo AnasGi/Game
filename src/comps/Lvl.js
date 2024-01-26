@@ -7,17 +7,11 @@ export default function Lvl() {
 
     const {lvl} = useParams()
 
-
-
-
     const [answer , setAnswer] = useState("")
     const [warn , setWarn] = useState()
     let [ans , setAns] = useState([])
     let [tries , setTries] = useState(5)
-    // let [level , setLevel] = useState(0)
-    let [key , setKey] = useState(0) //to re-render the app when i didn't pass a level
-    // let [hints , setHints] = useState(10)
-    // let [tuto , setTuto] = useState(false)
+    let [hints , setHints] = useState(5)
 
     const words = UseWords()
 
@@ -41,17 +35,17 @@ export default function Lvl() {
         for(let j=0 ; j < dbWords.letters[i].length ; j++){
             word_tab.push(dbWords.letters[i].charAt(j))
         }
-    }//loop to push all the caracteres of a level in word_tab to display them
+    }
     
     //splice loop
     for (let index = 0; index < ans_tab.length; index++) {
         for (let k = 0; k < word_tab.length; k++) {
             if(ans_tab[index] === word_tab[k]){
                 word_tab.splice(k , 1)
-                break //if there caracteres that are duplicated we remove the first one only
+                break 
             }
         }
-    } //loop to remove buttons of the letters of a correct answer
+    }
    }
 
     word_tab.sort()
@@ -65,7 +59,7 @@ export default function Lvl() {
         let dup = ans.find(an=>an === answer) //duplicated word
 
         if(answer === ""){
-            setWarn(()=><p id='warning'><span id='warnin_pointer'></span> type an answer</p>) //passing a function containing html elements in setWarn
+            setWarn(()=><p id='warning'><span id='warnin_pointer'></span> type an answer</p>) 
         }
         else if(dup !== undefined){
             setWarn(()=><p id='warning'><span id='warnin_pointer'></span> this word is already there</p>)
@@ -80,13 +74,26 @@ export default function Lvl() {
             }
             setWarn('')
         }
-        setAnswer('') //to make room for the other answer
+        setAnswer('')
         unfocussed_btns()
+    }
+
+    function handleHint(){
+        setHints(hints-=1)
+         
+        const conbineArrays = dbWords.letters.concat(ans) 
+        const hinted_word = conbineArrays.filter((element)=>conbineArrays.indexOf(element) === conbineArrays.lastIndexOf(element)) 
+           
+        setAns([...ans , hinted_word[0]])
+
+        if(hints === 0){
+            document.getElementById('hint').disabled = true
+        }
     }
 
     function focussed_btns(id){
         document.getElementById(id).style.backgroundColor = "rgb(90, 26, 149)"
-        document.getElementById(id).disabled = true //to disable the clicked letter
+        document.getElementById(id).disabled = true 
     }
 
     function unfocussed_btns(){
@@ -98,12 +105,16 @@ export default function Lvl() {
     }
     
   return (
-    (words !== "Loading" && words.length !== 0) && <div className='container' key={key}>
-            {/* key === 0 to show the tutorial once */}
+    (words !== "Loading" && words.length !== 0) && <div className='container'>
             <form>
                 <main>
+                    <div className='Links' style={{marginTop : "30px" , gap : "15px"}}>
+                        <div  className='Link_cont'><Link to='/Game_Crash'>Home</Link></div>
+                        <div  className='Link_cont'><Link to='/Game_Crash/FanLvl'>Fan made levels</Link></div>
+                        <div  className='Link_cont'><Link to='/Game_Crash/AddLvl'>Create your own level</Link></div>
+                    </div>
                     <p>{`{ `}Category : <span style={{textTransform : 'uppercase'}}>{dbWords.category}</span>{` }`}</p>
-                    <header style={{backgroundImage : `url(${dbWords.image})`}}><div><p>{dbWords.maker}</p></div></header>
+                    <header style={dbWords.image === "" ? {backgroundImage : "url(https://www.primarygames.com/langarts/wordguess/logo200.png)"} : {backgroundImage : `url(${dbWords.image})`}}><div><p>{dbWords.maker}</p></div></header>
                     <aside className='infos'>
                         <div id='objective'><span id='pointer'></span><p id='nbre_words'>you have to get { dbWords.letters.length - ans.length} word(s)</p></div>
                     </aside>
@@ -118,8 +129,9 @@ export default function Lvl() {
                         </fieldset>
                         <div className='ops_btns'>
                             <input id='check' type='button' value={"CHECK"} onClick={handleInteractions} />
+                            <input id='hint' type='button' value={`${hints} HINTS`} onClick={()=>handleHint()} />
                             <input id='del' type='button' value={"DEL"} onClick={()=>{setAnswer("") ; unfocussed_btns()}} />
-                            {/* <input id='restart' type='button' value={"RESTART"} onClick={()=>{window.location.reload() ; alert("Do you want to restart to level 1 ?")}} /> */}
+                            <input id='restart' type='button' value={"RESTART"} onClick={()=>{window.location.reload() ; alert("Do you want to restart this level ?")}} />
                         </div>
                     </section>
                     <div className='btns'>
@@ -152,7 +164,7 @@ export default function Lvl() {
             {
                 tries===0 ? 
                 <Prompt 
-                    onPassLvl={()=>{setKey(key+1) ; setTries(5)}}
+                    onPassLvl={()=>{window.location.reload() ; setTries(5)}}
                     lvl={"this fan lvl"} 
                     lvl_info={"RETRY"} 
                     result={"DIDN'T PASS"}

@@ -77,6 +77,8 @@ export default function AddLvl() {
         }
         else{
             setError('')
+            d.add.disabled = true
+            setTimeout(()=>window.location.reload() , 3000)
         }
         
 
@@ -99,7 +101,7 @@ export default function AddLvl() {
             <p id='err'>{error}</p>
             <div>
                 <label>Theme</label>
-                <input type='text' name='cat' onChange={(e)=>setCategory(e.target.value)}/>
+                <input type='text' name='cat' maxLength={12} onChange={(e)=>setCategory(e.target.value)}/>
             </div>
             
             <div>
@@ -109,7 +111,7 @@ export default function AddLvl() {
             
             <div>
                 <label>Creator name</label>
-                <input type='text' name='name' onChange={(e)=>setMaker(e.target.value)}/>
+                <input type='text' name='name' maxLength={5} onChange={(e)=>setMaker(e.target.value)}/>
             </div>
 
             <div>
@@ -126,7 +128,7 @@ export default function AddLvl() {
             <div id='word_cont' style={{display : "block"}}></div>
 
             <div>
-                <input style={{backgroundColor : "blueviolet" , color : 'white' , fontSize : "20px"}} type='submit' value={'Add Level'} />
+                <input style={{backgroundColor : "blueviolet" , color : 'white' , fontSize : "20px"}} type='submit' id='add' value={'Add Level'} />
             </div>
 
             <div>{status}</div>
