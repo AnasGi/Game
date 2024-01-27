@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path='/Game_Crash' element={<Crash/>} />
+          <Route path='/' element={<Crash/>} />
           <Route path='/Game_Crash/FanLvl' element={<FanLvl/>} />
           <Route path='/Game_Crash/Lvl/:lvl' element={<Lvl/>} />
           <Route path='/Game_Crash/AddLvl' element={<AddLvl/>} />
