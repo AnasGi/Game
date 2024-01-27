@@ -8,7 +8,7 @@ import AddLvl from './comps/AddLvl';
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path='/Game_Crash' element={<Crash/>} />
